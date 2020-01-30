@@ -1,2 +1,3 @@
 # playground
-for hobby
+
+just for fun
