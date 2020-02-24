@@ -22,7 +22,6 @@ int main (void) {
   printf("Address\n");
   printf("\n");
   printf("Union's i8 = %p, i16 = %p, i32 = %p, i64 = %p\n", &(u.i8), &(u.i16), &(u.i32), &(u.i64));
-  printf("\n");
   printf("Struct's i8 = %p, i16 = %p, i32 = %p, i64 = %p\n", &(s.i8), &(s.i16), &(s.i32), &(s.i64));
   printf("-------------\n");
   printf("Union & Struct's Size\n");
