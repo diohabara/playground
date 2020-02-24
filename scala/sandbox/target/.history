@@ -1,0 +1,15 @@
+class Point(val x : Int, val y : Int) {
+class Point(val x : Int, val y : Int) {def +(p: Point): Point = {
+class Point(val x : Int, val y : Int) {def +(p: Point): Point = {new Point(x + p.x, y + p.y)} override def toString(): String = "(" + x + ", " + y + ")"
+class Point(val x : Int, val y : Int) {def +(p: Point): Point = {new Point(x + p.x, y + p.y)} override def toString(): String = "(" + x + ", " + y + ")"}
+class
+class Point(val x : Int, val y : Int) {def +(p: Point): Point = {new Point(x + p.x, y + p.y)} override def toString(): String = "(" + x + ", " + y + ")"};
+class Point(val x : Int, val y : Int) {def +(p: Point): Point = {new Point(x + p.x, y + p.y)} override def toString(): String = "(" + x + ", " + y + ")"} defined class Point
+class Point(val x : Int, val y : Int) {def +(p: Point): Point = {new Point(x + p.x, y + p.y)} override def toString(): String = "(" + x + ", " + y + ")"}
+val p1 = new Point(1, 1)
+val p1 = new Point(1, 1);
+val p1 = new Point(1, 1
+val p1 = new Point(1, 1)
+:q
+quit
+val p1 = new Point(1, 1)
