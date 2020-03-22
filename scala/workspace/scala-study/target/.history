@@ -1,0 +1,8 @@
+run
+exit
+run
+runMain Distance
+runMain Factorial
+run Mainfactorization
+run
+runMain Factorization

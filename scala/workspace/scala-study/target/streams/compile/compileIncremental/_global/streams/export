@@ -1,0 +1,1 @@
+scalac -bootclasspath /home/denjo/.sbt/boot/scala-2.12.10/lib/scala-library.jar -classpath /home/denjo/Documents/playground/scala/workspace/scala-study/target/scala-2.12/classes /home/denjo/Documents/playground/scala/workspace/scala-study/Factorization.scala
