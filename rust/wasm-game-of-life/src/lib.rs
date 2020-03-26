@@ -1,6 +1,7 @@
 mod utils;
-
+extern crate js_sys;
 use wasm_bindgen::prelude::*;
+use std::fmt;
 
 // When the `wee_alloc` feature is enabled, use `wee_alloc` as the global
 // allocator.
@@ -57,14 +58,13 @@ impl Universe {
         let cell = self.cells[idx];
         let live_neighbors = self.live_neighbor_count(row, col);
 
-        let next_cell = match (cell, live_neighbors) {
+        let next_cell =  match (cell, live_neighbors) {
           (Cell::Alive, x) if x < 2 => Cell::Dead,
           (Cell::Alive, 2) | (Cell::Alive, 3) => Cell::Alive,
           (Cell::Alive, x) if x > 3 => Cell::Dead,
           (Cell::Dead, 3) => Cell::Alive,
           (otherwise, _) => otherwise,
         };
-
         next[idx] = next_cell;
       }
     }
@@ -72,18 +72,20 @@ impl Universe {
   }
 
   pub fn new() -> Universe {
+    utils::set_panic_hook();
+    
     let width = 64;
     let height = 64;
 
     let cells = (0..width * height)
-      .map(|i| {
-        if i % 2 == 0 || i % 7 == 0 {
-          Cell::Alive
-        } else {
-          Cell::Dead
-        }
-      })
-      .collect();
+    .map(|i| {
+      if i % 2 == 0 || i % 7 == 0 {
+        Cell::Alive
+      } else {
+        Cell::Dead
+      }
+    })
+    .collect();
 
     Universe {
       width,
@@ -107,9 +109,30 @@ impl Universe {
   pub fn cells(&self) -> *const Cell {
     self.cells.as_ptr()
   }
+
+  pub fn set_width(&mut self, width: u32) {
+    self.width = width;
+    self.cells = (0..width * self.height).map(|_i| Cell::Dead).collect();
+  }
+
+  pub fn set_height(&mut self, height: u32) {
+    self.height = height;
+    self.cells = (0..self.width * height).map(|_i| Cell::Dead).collect();
+  }
 }
 
-use std::fmt;
+impl Universe {
+  pub fn get_cells(&self) -> &[Cell] {
+    &self.cells
+  }
+
+  pub fn set_cells(&mut self, cells: &[(u32, u32)]) {
+    for (row, col) in cells.iter().cloned() {
+      let idx = self.get_index(row, col);
+      self.cells[idx] = Cell::Alive;
+    }
+  }
+}
 
 impl fmt::Display for Universe {
   fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
